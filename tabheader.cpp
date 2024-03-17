@@ -7,8 +7,8 @@ TabHeader::TabHeader(QWidget *parent)
 {
     QHBoxLayout *layout = new QHBoxLayout;
     label               = new QLabel;
-    removeButton        = new QPushButton("X");
-    tab                 = new Tab();
+    removeButton        = new QPushButton;
+    tab                 = new Tab;
 
     removeButton->setSizeIncrement(QSize(50, 50));
     // layout->setMargin(0);
@@ -17,6 +17,8 @@ TabHeader::TabHeader(QWidget *parent)
     label->setText("Новая вкладка");
     //setMaximumWidth(300);
     setLayout(layout);
+    removeButton->setIcon(QIcon(":/icons/cross.png"));
+    layout->setMargin(2);
 
     connect(removeButton, SIGNAL(clicked()), this, SLOT(remove()));
     connect(tab, SIGNAL(titleChanged(QString)), this, SLOT(changeTitle(QString)));
@@ -46,12 +48,12 @@ TabHeader::~TabHeader()
             return;
         }
 
-        emit tabUpdated(prev->tab);
+        prev->madeActive();
         delete tab;
         return;
     }
 
-    emit tabUpdated(next->tab);
+    next->madeActive();
     delete tab;
 }
 
@@ -85,6 +87,7 @@ void TabHeader::setPrev(TabHeader * tab)
 void TabHeader::madeActive()
 {
     isActive = true;
+    updateDynamicProperties();
 
     if (next != nullptr)
         next->setUnactiveNext();
@@ -113,6 +116,7 @@ void TabHeader::updateStyles()
 void TabHeader::setUnactiveNext()
 {
     isActive = false;
+    updateDynamicProperties();
 
     if (next != nullptr)
         next->setUnactiveNext();
@@ -121,6 +125,7 @@ void TabHeader::setUnactiveNext()
 void TabHeader::setUnactivePrev()
 {
     isActive = false;
+    updateDynamicProperties();
 
     if (prev != nullptr)
         prev->setUnactivePrev();
@@ -129,4 +134,11 @@ void TabHeader::setUnactivePrev()
 void TabHeader::changeTitle(QString title)
 {
     label->setText(title);
+}
+
+void TabHeader::updateDynamicProperties()
+{
+    setProperty("active", isActive);
+    style()->unpolish(this);
+    style()->polish(this);
 }

@@ -57,6 +57,7 @@ private:
     void setUnactivePrev();
     void setUnactiveNext();
     void updateStyles();
+    void updateDynamicProperties();
 };
 
 #endif // TABHEADER_H

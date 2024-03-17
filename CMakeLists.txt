@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         tabheader.h
 )
 
+qt_add_resources(PROJECT_SOURCES resources.qrc)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(test
         MANUAL_FINALIZATION

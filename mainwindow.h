@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QString>
+#include <QGridLayout>
+#include <QApplication>
 
 #include "tabscontainer.h"
 

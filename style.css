@@ -1,0 +1,52 @@
+/* :root { */
+/*   --background-color: #151915; */
+/* } */
+
+MainWindow {
+  background: #151915;
+  color: #ffffff;
+}
+
+QPushButton {
+  background: transparent;
+  border-style: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+QPushButton:hover {
+  background-color: #435644;
+}
+
+TabHeader {
+  background: transparent;
+  border-style: none;
+  border-radius: 5px;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+TabHeader[active="true"] {
+  background: #1e281f;
+}
+
+TabHeader[active="false"] {
+  background: transparent;
+}
+
+QWidget#url-widget {
+  background: #1e281f;
+  padding: 100px;
+}
+
+QLineEdit {
+  background: #151915;
+  border-style: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+QLineEdit:focus {
+  background: #031304;
+}

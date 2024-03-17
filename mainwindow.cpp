@@ -1,20 +1,23 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
 #include "tabscontainer.h"
-
-#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-
     container = new TabsContainer(this);
-    ui->gridLayout->addWidget(container);
+    setCentralWidget(container);
+    resize(QSize(800, 600));
+
+    QFile file(":/style.css");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    file.close();
+
+    qApp->setStyleSheet(styleSheet);
+
+    container->addTab();
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }

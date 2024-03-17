@@ -23,6 +23,10 @@ class Tab : public QWidget
     QWidget        *urlWidget;
     QLineEdit      *urlEdit;
     QPushButton    *urlSubmit;
+    QPushButton    *backButton;
+    QPushButton    *forwardButton;
+    QPushButton    *reloadButton;
+    QWidget        *startPageWidget;
 
 public:
     explicit Tab(QWidget *parent = nullptr);

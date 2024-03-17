@@ -10,10 +10,9 @@ TabsContainer::TabsContainer(QWidget *parent)
     headersWidget = new QWidget    ;
     headersLayout = new QHBoxLayout(headersWidget);
     tabLayout     = new QGridLayout;
-    addTabButton  = new QPushButton("+");
+    addTabButton  = new QPushButton;
 
     mainLayout->setMargin(0);
-    headersLayout->setMargin(0);
     mainLayout->addWidget(headersWidget);
     mainLayout->addLayout(tabLayout);
     mainLayout->setAlignment(Qt::AlignTop);
@@ -21,13 +20,14 @@ TabsContainer::TabsContainer(QWidget *parent)
     headersLayout->addWidget(addTabButton);
     headersLayout->setAlignment(Qt::AlignLeft);
     headersWidget->setMaximumHeight(50);
+    addTabButton->setIcon(QIcon(":/icons/plus.png"));
 
     connect(addTabButton, SIGNAL(clicked(bool)), this, SLOT(addTab()));
 }
 
 void TabsContainer::addTab()
 {
-    TabHeader * newTabHeader = new TabHeader(this);
+    TabHeader * newTabHeader = new TabHeader;
 
     connect(newTabHeader, SIGNAL(tabUpdated(Tab*)), this, SLOT(setTab(Tab*)));
     headersLayout    -> insertWidget(headersLayout->count() - 1, newTabHeader);
@@ -58,4 +58,5 @@ void TabsContainer::setTab(Tab *tab)
 void TabsContainer::removeTabHeader()
 {
     tabHeader = nullptr;
+    addTab();
 }
